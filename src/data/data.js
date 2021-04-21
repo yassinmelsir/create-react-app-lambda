@@ -1,5 +1,6 @@
 import { SiGmail, SiTwitter, SiLinkedin, SiGatsby, SiReact, SiGraphql, SiJavascript, SiRails, SiRuby, SiPostgresql } from "react-icons/si";
 import React from "react"
+import image from './images/SLRPSI1.png'
 
 const nav = { 
   smText: `Yassin Elsir`,
@@ -22,55 +23,65 @@ const hero = {
 
 const cards = [
     
-    { smText: `SLRPSI`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `SLRPSI`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <><SiGatsby /><SiReact/><SiGraphql/></>
     },
-    { smText: `WINKS`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `WINKS`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <><SiGatsby /><SiReact/><SiGraphql/></>
     },
-    { smText: `Right Dose`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `Right Dose`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <><SiRails/><SiJavascript/><SiRuby/><SiPostgresql/></>
     },
-    { smText: `Party Reel`,
-    lgText: ``,
+    { homeImage: image,
+      smText: `Party Reel`,
+    lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
     className: {
       clicked: "text-white bg-green-300 mt-5 mb-5  grid grid-cols-1 p-4 items-center rounded h-full text-sm xl:text-base xl:w-1/6 w-5/6" ,
       notClicked: "text-white bg-green-200 mt-5 mb-5 grid grid-cols-1 items-center rounded h-10 xl:w-1/6 w-2/3"
     },
     icons: <><SiRails/><SiJavascript/><SiRuby/><SiPostgresql/></>
     },
-    { smText: `Mile High Club`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `Mile High Club`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <><SiRails/><SiJavascript/><SiRuby/><SiPostgresql/></>
     }
   ]
   const blogPosts = [
     
-    { smText: `1`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `1`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <>
       </>
     },
-    { smText: `2`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `2`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <>
       </>
     },
-    { smText: `3`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `3`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <>
       </>
     },
-    { smText: `4`,
-    lgText: ``,
-    icons: <>
+    { homeImage: image,
+      smText: `4`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
+      icons: <>
     </>
     },
-    { smText: `5`,
-      lgText: ``,
+    { homeImage: image,
+      smText: `5`,
+      lgText: `What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?`,
       icons: <>
       </>
     }
