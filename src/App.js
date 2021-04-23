@@ -7,7 +7,7 @@ const ContactForm = () => {
     <form
       className=""
       name="contact-home-page"
-      netlify
+      data-netlify="true"
     >   
         <div className='grid grid-flow-row place-items-center mt-20 gap-1'>
           <input
@@ -50,7 +50,6 @@ const Main = () => {
     </div>
   )
 }
-
 
 const App = () => {
     return ( 
