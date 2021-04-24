@@ -39,48 +39,69 @@ const ContactForm = ({className}) => {
 }
 const Blog = ({props}) => {
   const { route, setRoute } = props
+  const menuSize = 'w-20 h-40 -mt-5'
+  const buttonClass = 'hover:bg-gray-100 rounded-full w-20 h-20 grid place-items-center '
+  const iconSize = 'h-10 w-10'
+  const newProps = { menuSize, iconSize, buttonClass, route, setRoute }
   return (
     <div className='h-screen w-screen grid grid-flow-col place-items-center relative'>
-      <button onClick={()=> setRoute('main')} className='absolute h-10 w-10 top-0 right-0'><IoMdClose className='w-full h-full' /></button>
+      <div className='absolute top-0 grid grid-flow-col'><MediaLinks props={newProps}/><MailButton props={newProps} /></div>
+      <button onClick={()=> setRoute('main')} className='hover:bg-gray-100 grid place-items-center rounded-full absolute h-20 w-20 top-0 right-0'><IoMdClose className='w-10 h-10' /></button>
       <p>Hello World!</p>
     </div>
     
   )
 }
 
-const Main = ({props}) => {
-  const buttonClass = 'hover:bg-gray-100 rounded-full w-40 grid grid-cols-1 place-items-center '
+const MediaLinks = ({props}) => {
+  const { iconSize, buttonClass, route, setRoute } = props
+  return (
+    <>
+    <button className={buttonClass}><a target="_blank" rel="noopener noreferrer" href='https://github.com/yassinmelsir'><SiGithub className={iconSize} /></a></button>
+    <button className={buttonClass} ><a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/yassin-elsir-2ab05b174/'><SiLinkedin className={iconSize} /></a></button>
+    <button className={buttonClass} ><a target="_blank" rel="noopener noreferrer" href='https://twitter.com/yassinelsir1'><SiTwitter className={iconSize} /></a></button>
+    </>
+  )
+}
+
+const BlogLink = ({props}) => {
+  const { buttonClass, route, setRoute } = props
+  return (
+    <button className={buttonClass + ' ml-40 xl:ml-0'} ><GiQuillInk onClick={()=> setRoute('blog')} className='h-20 w-20' /></button>
+  )
+}
+
+const MailButton = ({props}) => {
+  const { menuSize, iconSize, buttonClass, route, setRoute } = props
+  const menuClass = 'hover:opacity-100 rounded-full top-5 hover:bg-gray-100 opacity-0 absolute z-30  gap-0 grid grid-flow-row place-items-center '
+  return (
+    <button className={buttonClass + ' ml-40 xl:ml-0 relative'}>
+      <SiGmail className={iconSize + ' absolute z-20'} />
+      <div className={menuClass + menuSize}>
+        <SiGmail className={iconSize} />
+        <ContactForm className='-mt-10' />
+      </div>
+    </button>
+  )
+}
+
+
+const Main = ({ props }) => {
+  const buttonClass = 'hover:bg-gray-100 rounded-full w-40 h-40 grid grid-cols-1 place-items-center '
+  
+  const menuSize = ' w-40 h-60 '
+  const iconSize = 'h-20 w-20'
   const containerPosition = ' top-20 xl:top-halfh absolute'
-  const { route, setRoute } = props
+  const { route, setRoute  } = props
+  const newProps = { menuSize, iconSize, route, setRoute, buttonClass }
   return ( 
-    
-    
-        <div className='relative'>
-          <div className={'z-10 grid grid-cols-3 xl:grid-flow-col gap-x-10 xl:gap-x-0 place-items-center ' + containerPosition + ' left-10 xl:left-tw '} >
-            <button className={buttonClass + 'h-40 '}><a target="_blank" rel="noopener noreferrer" href='https://github.com/yassinmelsir'><SiGithub className='h-20 w-20'/></a></button>
-            
-            <button className={buttonClass + 'h-40 '} ><a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/yassin-elsir-2ab05b174/'><SiLinkedin className='h-20 w-20' /></a></button>
-            <button className={buttonClass + 'h-40 '} ><a target="_blank" rel="noopener noreferrer" href='https://twitter.com/yassinelsir1'><SiTwitter className='h-20 w-20' /></a></button>
-            <button className={buttonClass + 'h-40 ' + ' ml-40 xl:ml-0'} ><GiQuillInk onClick={()=> setRoute('blog')} className='h-20 w-20' /></button>
-            <button className={buttonClass + 'h-40 ' + ' ml-40 xl:ml-0 relative'}>
-              
-              
-                
-                <SiGmail className='h-20 w-20 absolute z-20' />
-                <div className='hover:opacity-100 rounded-full top-5 hover:bg-gray-100 opacity-0 absolute z-30 w-40 gap-0 h-60 grid grid-flow-row place-items-center '>
-                  <SiGmail className='h-20 w-20 mt-4' />
-                  <ContactForm className='-mt-10' />
-                </div>
-                
-                
-              
-              
-              </button>
-          </div>
-          
-        </div>
-    
-    
+    <div className='relative'>
+      <div className={'z-10 grid grid-cols-3 xl:grid-flow-col gap-x-10 xl:gap-x-0 place-items-center ' + containerPosition + ' left-10 xl:left-tw '} >
+        <MediaLinks props={newProps} />
+        <BlogLink props={newProps} />
+        <MailButton props={newProps} />
+      </div>
+    </div>    
   )
 }
 
