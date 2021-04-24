@@ -37,6 +37,21 @@ const ContactForm = ({className}) => {
     </form>
   )
 }
+
+const BlogPost = ({props}) => {
+  const [hidden, setHidden] = useState(false)
+  const { description, title } = props
+
+  return(
+    <div className='w-tf h-half text-4xl'>
+      <button onClick={()=> setHidden(!hidden)}  className=' font-bold mb-10'>
+        {title}
+      </button>
+      {hidden && <div className='text-xl' dangerouslySetInnerHTML={{__html: description}} />}
+    </div>
+  )
+}
+
 const Blog = ({props}) => {
   const { route, setRoute } = props
   const menuSize = 'w-20 h-40 -mt-5'
@@ -46,6 +61,7 @@ const Blog = ({props}) => {
   const [blogPosts, setBlogPosts] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const apiUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@ymelsir11"
+
 
   const fetchData = () => {
       fetch(apiUrl).then(res=> res.json()).then((result)=> {
@@ -64,7 +80,7 @@ const Blog = ({props}) => {
     <div className='h-screen w-screen grid grid-flow-col place-items-center relative'>
       <div className='fixed top-0 grid grid-flow-col'><MediaLinks props={newProps}/><MailButton props={newProps} /></div>
       <button onClick={()=> setRoute('main')} className='hover:bg-gray-100 grid place-items-center rounded-full absolute h-20 w-20 top-0 right-0'><IoMdClose className='w-10 h-10' /></button>
-      {(!isLoading && blogPosts !== null) && blogPosts.map((post, id)=>{return(<div className='w-half h-half'><p key={id} className=''>{post.title}</p><div dangerouslySetInnerHTML={{__html: post.description}} /></div>)})}
+      {(!isLoading && blogPosts !== null) && blogPosts.map((post)=>{ return(<BlogPost props={post} />)})}
       {(isLoading || blogPosts === null) && <p>Loading World!</p>}
     </div>
     
