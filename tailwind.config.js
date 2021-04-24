@@ -12,6 +12,18 @@ module.exports = {
         'tfw': '35vw',
         'halfh': '50vh',
         'halfw': '50vw',
+       },
+       height: {
+        q: '25vh',
+        t: '30vh',
+        tf: '35vh',
+        half: '50vh',
+       },
+       width: {
+        q: '25vw',
+        t: '30vw',
+        tf: '35vw',
+        half: '50vw',
        }
     },
   },

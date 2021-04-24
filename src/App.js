@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect } from "react"
 
 import { SiGithub, SiGmail, SiTwitter, SiLinkedin } from 'react-icons/si'
 
@@ -43,11 +43,29 @@ const Blog = ({props}) => {
   const buttonClass = 'hover:bg-gray-100 rounded-full w-20 h-20 grid place-items-center '
   const iconSize = 'h-10 w-10'
   const newProps = { menuSize, iconSize, buttonClass, route, setRoute }
+  const [blogPosts, setBlogPosts] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const apiUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@ymelsir11"
+
+  const fetchData = () => {
+      fetch(apiUrl).then(res=> res.json()).then((result)=> {
+        const posts = result.items
+        console.log(posts)
+        setBlogPosts(posts)
+      }).then(setIsLoading(false))
+    }
+    
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
+
   return (
+
     <div className='h-screen w-screen grid grid-flow-col place-items-center relative'>
-      <div className='absolute top-0 grid grid-flow-col'><MediaLinks props={newProps}/><MailButton props={newProps} /></div>
+      <div className='fixed top-0 grid grid-flow-col'><MediaLinks props={newProps}/><MailButton props={newProps} /></div>
       <button onClick={()=> setRoute('main')} className='hover:bg-gray-100 grid place-items-center rounded-full absolute h-20 w-20 top-0 right-0'><IoMdClose className='w-10 h-10' /></button>
-      <p>Hello World!</p>
+      {(!isLoading && blogPosts !== null) && blogPosts.map((post, id)=>{return(<div className='w-half h-half'><p key={id} className=''>{post.title}</p><div dangerouslySetInnerHTML={{__html: post.description}} /></div>)})}
+      {(isLoading || blogPosts === null) && <p>Loading World!</p>}
     </div>
     
   )
