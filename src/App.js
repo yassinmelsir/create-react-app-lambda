@@ -43,11 +43,11 @@ const BlogPost = ({props}) => {
   const { description, title } = props
 
   return(
-    <div className='w-tf h-half text-4xl'>
-      <button onClick={()=> setHidden(!hidden)}  className=' font-bold mb-10'>
+    <div className='w-screen h-full p-10 xl:p-0 xl:w-tf text-2xl xl:text-4xl'>
+      <button onClick={()=> setHidden(!hidden)}  className=' hover:bg-gray-100 w-full h-40 rounded-full font-bold mb-10'>
         {title}
       </button>
-      {hidden && <div className='text-xl' dangerouslySetInnerHTML={{__html: description}} />}
+      {hidden && <div className='text-base xl:text-xl h-full' dangerouslySetInnerHTML={{__html: description}} />}
     </div>
   )
 }
@@ -56,8 +56,9 @@ const Blog = ({props}) => {
   const { route, setRoute } = props
   const menuSize = 'w-20 h-40 -mt-5'
   const buttonClass = 'hover:bg-gray-100 rounded-full w-20 h-20 grid place-items-center '
+  const customClass = 'absolute xl:relative right-40 xl:right-0 '
   const iconSize = 'h-10 w-10'
-  const newProps = { menuSize, iconSize, buttonClass, route, setRoute }
+  const newProps = { menuSize, iconSize, buttonClass, route, setRoute, customClass }
   const [blogPosts, setBlogPosts] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const apiUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@ymelsir11"
@@ -66,7 +67,6 @@ const Blog = ({props}) => {
   const fetchData = () => {
       fetch(apiUrl).then(res=> res.json()).then((result)=> {
         const posts = result.items
-        console.log(posts)
         setBlogPosts(posts)
       }).then(setIsLoading(false))
     }
@@ -74,13 +74,15 @@ const Blog = ({props}) => {
   useEffect(() => {
     fetchData()
   }, [fetchData])
+  
 
   return (
 
     <div className='h-screen w-screen grid grid-flow-col place-items-center relative'>
-      <div className='fixed top-0 grid grid-flow-col'><MediaLinks props={newProps}/><MailButton props={newProps} /></div>
+      <div className='fixed top-0 grid grid-flow-col place-items-center'><MediaLinks props={newProps}/><MailButton props={newProps} /></div>
       <button onClick={()=> setRoute('main')} className='hover:bg-gray-100 grid place-items-center rounded-full absolute h-20 w-20 top-0 right-0'><IoMdClose className='w-10 h-10' /></button>
-      {(!isLoading && blogPosts !== null) && blogPosts.map((post)=>{ return(<BlogPost props={post} />)})}
+      <div className='absolute top-20 xl:top-40 grid grid-flow-row gap-0 place-items-center h-tf xl:h-half'>{(!isLoading && blogPosts !== null) && 
+        blogPosts.map((post)=>{ return(<BlogPost props={post} />)})}</div>
       {(isLoading || blogPosts === null) && <p>Loading World!</p>}
     </div>
     
@@ -106,10 +108,10 @@ const BlogLink = ({props}) => {
 }
 
 const MailButton = ({props}) => {
-  const { menuSize, iconSize, buttonClass, route, setRoute } = props
+  const { menuSize, iconSize, buttonClass, route, setRoute, customClass } = props
   const menuClass = 'hover:opacity-100 rounded-full top-5 hover:bg-gray-100 opacity-0 absolute z-30  gap-0 grid grid-flow-row place-items-center '
   return (
-    <button className={buttonClass + ' ml-40 xl:ml-0 relative'}>
+    <button className={buttonClass + customClass + ' ml-40 xl:ml-0 relative'}>
       <SiGmail className={iconSize + ' absolute z-20'} />
       <div className={menuClass + menuSize}>
         <SiGmail className={iconSize} />
